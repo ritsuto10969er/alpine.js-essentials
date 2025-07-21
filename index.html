@@ -7,6 +7,18 @@
     <title>Data Binding</title>
 </head>
 <body>
-    
+    <div x-data="{ message: 'Hello World' }">
+        <h1 x-text="message.toUpperCase()"></h1>
+
+        <button @click="message = 'Changed!'">click</button>
+
+        <input type="text" x-bind:value="message">
+        <input type="text" :value="message">
+        <input type="text" x-model="message">
+    </div>
+    <hr>
+    <div x-data="{ first: 0, second: 0 }">
+        <input type="number" x-model.number="first"> + <input type="number" x-model.number="second"> = <output x-text="first + second">
+    </div>
 </body>
 </html>
