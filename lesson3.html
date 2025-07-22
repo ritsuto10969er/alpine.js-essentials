@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <title>Two Way Data Binding</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="p-10 max-w-lg mx-auto">
+    <form
+      x-data="{
+        form: {
+            name: ''
+        },
+
+        user: null,
+
+        submit() {
+            fetch('https://reqres.in/api/users', {
+                methos: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: JSON.stringify(this.form)
+            })
+            .then(response => response.json())
+            .then(user => this.user => user)
+        }
+      }"
+      @submit.prevent="alert('hello')"
+    >
+      <div class="mb-6">
+        <label
+          for="name"
+          class="block mb-2 uppercase font-bold text-xs text-gray-700"
+        >
+          Name
+        </label>
+
+        <input
+          type="text"
+          name="name"
+          id="name"
+          x-model="form.name"
+          required
+          class="border border-gray-400 p-2 w-full"
+        />
+
+        <!-- <p x-text="form.name"></p> -->
+
+      </div>
+      <template x-if="user">
+        <div x-text="'The user ' + user.name + ' was created at ' + user.createdAt"></div>
+      </template>
+    </form>
+  </body>
+</html>
