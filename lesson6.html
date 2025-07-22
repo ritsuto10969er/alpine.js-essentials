@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <title>Transition102</title>
+</head>
+<body>
+    <div class="grid items-center justify-center h-screen">
+        <div x-data="{ show: false }" @click.away="show = false">
+            <button x-on:click="show = ! show">Links</button>
+
+            <div class="absolute bg-black text-white py-2 rounded mt-1"
+                x-show="show">
+                <a class="block hover:bg-gray-800 text-xs py-px px-4" href="#">Edit</a>
+                <a class="block hover:bg-gray-800 text-xs py-px px-4" href="#">Delete</a>
+                <a class="block hover:bg-gray-800 text-xs py-px px-4" href="#">Report Spam</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
