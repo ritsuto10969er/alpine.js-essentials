@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Toggle Visibility Using State</title>
+
+    <style>
+        .active {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div x-data="{ show: false }">
+        <!-- <h1 x-show="show">Hello</h1> -->
+        <button x-on:click="show = ! show" x-text="show ? 'Hide' : 'Show'"></button>
+
+        <div x-show="show">
+            <a href="/" style="display: block;">Menu</a>
+            <a href="/" style="display: block;">About</a>
+            <a href="/" style="display: block;">Coontact</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div x-data="{ currentTab: 'first'}">
+        <button x-on:click="currentTab = 'first'" :class="{ 'active' : currentTab === 'first'}">first</button>
+        <button x-on:click="currentTab = 'second'" :class="{ 'active' : currentTab === 'second'}">second</button>
+        <button x-on:click="currentTab = 'third'" :class="{ 'active' : currentTab === 'third'}">third</button>
+
+        <div style="border: 1px dotted grey; padding: 1rem;">
+            <div x-show="currentTab === 'first'">
+                <p>First tab.</p>
+            </div>
+            <div x-show="currentTab === 'second'">
+                <p>Second tab.</p>
+            </div>
+            <div x-show="currentTab === 'third'">
+                <p>Third tab.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
