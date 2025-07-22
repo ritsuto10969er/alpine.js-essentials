@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <title>Extract Component Logic</title>
+</head>
+<body class="p-10 max-w-lg mx-auto">
+    <div class="bg-gray-300 px-10 py-6 rounded"
+         x-data="taskApp()">
+        <form @submit.prevent="submit">
+            <input type="text" 
+                   placeholder="Go to the market ..."
+                   x-model="newTask" 
+                   class="w-full rounded px-1">
+        </form>
+
+        <ul class="list-disc mt-3" >
+            <template x-for="(task, index) in tasks" :key="index">
+                <li>
+                    <input type="checkbox" x-model="task.completed">
+                    <span x-text="task.body" :class="{ 'line-through' : task.completed }"></span>
+                </li>
+            </template>
+        </ul>
+    </div>
+    
+</body>
+
+<script>
+    const  taskApp = () => {
+        return { 
+            tasks: [], 
+            newTask: '' ,
+            submit() {
+                this.tasks.push({ body: this.newTask, completed: false });
+                
+                this.newTask = '';
+            }
+        };
+    }
+</script>
+</html>
